@@ -34,5 +34,60 @@ namespace SysGymPago
             }
             return resultado;
         }
+
+        public DataTable SeleccionarClienteExpirado(string SQL, DateTime FechaExpiracion)
+        {
+            DataTable dataTabla = new DataTable();
+            OleDbConnection Conexion = new OleDbConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                OleDbCommand command = new OleDbCommand(SQL, Conexion);
+                command.CommandType = CommandType.Text;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@FechaExpiracion", FechaExpiracion);
+                OleDbDataAdapter dataAdaptador = new OleDbDataAdapter(command);
+                dataAdaptador.Fill(dataTabla);
+                Conexion.Close();
+            }
+            return dataTabla;
+        }
+
+        public DataTable SeleccionarClienteActivo(string SQL, DateTime FechaExpiracion)
+        {
+            DataTable dataTabla = new DataTable();
+            OleDbConnection Conexion = new OleDbConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                OleDbCommand command = new OleDbCommand(SQL, Conexion);
+                command.CommandType = CommandType.Text;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@FechaExpiracion", FechaExpiracion);
+                OleDbDataAdapter dataAdaptador = new OleDbDataAdapter(command);
+                dataAdaptador.Fill(dataTabla);
+                Conexion.Close();
+            }
+            return dataTabla;
+        }
+
+        public DataTable SeleccionarClienteActivo(string SQL, string Cedula)
+        {
+            DataTable dataTabla = new DataTable();
+            OleDbConnection Conexion = new OleDbConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                OleDbCommand command = new OleDbCommand(SQL, Conexion);
+                command.CommandType = CommandType.Text;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Cedula", Cedula);
+                OleDbDataAdapter dataAdaptador = new OleDbDataAdapter(command);
+                dataAdaptador.Fill(dataTabla);
+                Conexion.Close();
+            }
+            return dataTabla;
+        }
+
     }
 }

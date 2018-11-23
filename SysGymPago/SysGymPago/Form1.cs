@@ -20,7 +20,7 @@ namespace SysGymPago
         private void Form1_Load(object sender, EventArgs e)
         {
             EngineProcedure Funcion = new EngineProcedure();
-            string[] fecha = Funcion.FechasActivas();
+            string[] fecha = Funcion.FechasActivas(dateTimePicker1.Value);
             label1.Text = "Hoy : " + fecha[0];
             label6.Text = "Proximo Pago : " + fecha[1];
         }
@@ -32,7 +32,7 @@ namespace SysGymPago
             string cedula = txtCedula.Text;
             string transferencia = txtTransferencia.Text ;
             EngineProcedure Funcion = new EngineProcedure();
-            string[] fecha = Funcion.FechasActivas();
+            string[] fecha = Funcion.FechasActivas(dateTimePicker1.Value);
             string fechaPago =  fecha[0];
             string fechaExpiracion =  fecha[1];
             if (nombre == string.Empty) { MessageBox.Show("Ingrese Nombre", "Informacion del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop); return; }
@@ -70,6 +70,20 @@ namespace SysGymPago
             {
                 e.Handled = false;
             }
+        }
+
+        private void BtnRegistro_Click(object sender, EventArgs e)
+        {
+            Form2 f = new Form2();
+            f.Show();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            EngineProcedure Funcion = new EngineProcedure();
+            string[] fecha = Funcion.FechasActivas(dateTimePicker1.Value);
+            label1.Text = "Hoy : " + fecha[0];
+            label6.Text = "Proximo Pago : " + fecha[1];
         }
     }
 }
