@@ -27,6 +27,7 @@ namespace SysGymPago
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            int id = 0;
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
             string cedula = txtCedula.Text;
@@ -39,8 +40,9 @@ namespace SysGymPago
             if (apellido == string.Empty) { apellido = "NO INDICADO"; }
             if (cedula == string.Empty) { MessageBox.Show("Ingrese Cedula", "Informacion del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Stop); return; }
             if (transferencia == string.Empty) { transferencia = "NO INDICADO"; }
+            string SQL = "INSERT INTO ClientePago (Nombre,Cedula,FechaPago,FechaExpiracion,NumeroTransferencia) VALUES (@Nombre,@Cedula,@FechaPago,@FechaExpiracion,@NumeroTransferencia)";
             EngineDb MetodoDb = new EngineDb();
-            int resultado = MetodoDb.InsertarClientePago(nombre, apellido, cedula, fechaPago, fechaExpiracion, transferencia);
+            int resultado = MetodoDb.InsertarActualizarClientePago(SQL,id,nombre, apellido, cedula, fechaPago, fechaExpiracion, transferencia);
             if (resultado == 1)
             {
                 MessageBox.Show("Registro Exitoso", "Informacion del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);

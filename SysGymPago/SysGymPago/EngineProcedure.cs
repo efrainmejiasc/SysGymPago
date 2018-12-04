@@ -17,6 +17,13 @@ namespace SysGymPago
             fecha[1] = a.AddDays(30).ToString("dd/MM/yyyy");
             return fecha;
         }
+        public DateTime [] FechasActivasDB(DateTime a)
+        {
+            DateTime [] fecha = new DateTime[2];
+            fecha[0] = a;
+            fecha[1] = a.AddDays(30);
+            return fecha;
+        }
 
         public static DataGridView ColorGrilla(DataGridView grid)
         {
